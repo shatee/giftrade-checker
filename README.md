@@ -1,0 +1,4 @@
+# gitftrade-checker
+
+for me.
+
