@@ -1,0 +1,2 @@
+# giftrade-checker
+0 * * * *  .nvm/versions/node/v7.5.0/bin/node ~/giftrade-checker/get-latest.js >> ~/giftrade-checker/log/get-latest.log 2>&1
