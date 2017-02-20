@@ -6,7 +6,9 @@ window.onload = () => {
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
+      labels: ["rate"],
       datasets: {
+        label: "rate",
         data: data.map((row) => {
           return {
             x: row.date,
