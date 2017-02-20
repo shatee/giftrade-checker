@@ -21,6 +21,9 @@ window.onload = () => {
         return dateFormat(new Date(e.value), 'mm-dd HH:MM');
       },
       valueFormatString: 'MM-DD HH:mm'
+    },
+    axisY: {
+      minimum: 80
     }
   });
   chart.render();

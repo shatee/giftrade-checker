@@ -14372,6 +14372,9 @@ window.onload = function () {
         return (0, _dateformat2.default)(new Date(e.value), 'mm-dd HH:MM');
       },
       valueFormatString: 'MM-DD HH:mm'
+    },
+    axisY: {
+      minimum: 80
     }
   });
   chart.render();
