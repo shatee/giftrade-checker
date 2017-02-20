@@ -27548,14 +27548,14 @@ var _chart2 = _interopRequireDefault(_chart);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-document.onload(function () {
+document.onload = function () {
   var data = JSON.parse(document.querySelector('#data').getAttribute('data'));
   var ctx = document.getElementById('chart');
   var chart = new _chart2.default(ctx, {
     type: 'line',
     data: data
   });
-});
+};
 
 /***/ })
 /******/ ]);
