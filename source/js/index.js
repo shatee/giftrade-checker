@@ -7,7 +7,7 @@ window.onload = () => {
     type: 'line',
     data: {
       labels: ["rate"],
-      datasets: {
+      datasets: [{
         label: "rate",
         data: data.map((row) => {
           return {
@@ -15,7 +15,7 @@ window.onload = () => {
             y: row.rate
           };
         })
-      }
+      }]
     }
   });
 };

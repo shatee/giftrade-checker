@@ -27555,7 +27555,7 @@ window.onload = function () {
     type: 'line',
     data: {
       labels: ["rate"],
-      datasets: {
+      datasets: [{
         label: "rate",
         data: data.map(function (row) {
           return {
@@ -27563,7 +27563,7 @@ window.onload = function () {
             y: row.rate
           };
         })
-      }
+      }]
     }
   });
 };
