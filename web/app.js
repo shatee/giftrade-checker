@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
   }).map((line) => {
     const splitted = line.split("\t");
     return {
-      date: new Date(splitted[0]),
+      date: (new Date(splitted[0])).getTime(),
       rate: Number(splitted[1])
     };
   });

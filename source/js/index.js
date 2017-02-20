@@ -10,7 +10,7 @@ window.onload = () => {
       type: 'area',
       dataPoints: data.map((row) => {
         return {
-          x: row.date,
+          x: new Date(row.date),
           y: row.rate
         };
       })

@@ -14121,7 +14121,7 @@ window.onload = function () {
       type: 'area',
       dataPoints: data.map(function (row) {
         return {
-          x: row.date,
+          x: new Date(row.date),
           y: row.rate
         };
       })
