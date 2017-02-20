@@ -17,7 +17,7 @@ app.set('view engine', 'ect');
 app.engine('ect', ectRender.render);
 
 app.get('/', (req, res) => {
-  const tail = spawnSync('tail', ['-n 384', path.join(__dirname, '/log/test.log')]).output.toString();
+  const tail = spawnSync('tail', ['-n 384', path.join(__dirname, '../log/get-latest.log')]).output.toString();
   const data = tail.split("\n").map((line) => {
     const splitted = line.split("\t");
     return {
@@ -25,7 +25,9 @@ app.get('/', (req, res) => {
       rate: Number(splitted[1])
     };
   });
-  return res.render('page/index.ect', {data});
+  return res.render('page/index.ect', {
+    data
+  });
 });
 
 app.listen(serverConf.port);
