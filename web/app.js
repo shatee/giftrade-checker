@@ -15,6 +15,7 @@ const ectRender = ECT({
 });
 app.set('view engine', 'ect');
 app.engine('ect', ectRender.render);
+app.use(express.static(path.join(__dirname, '/web/resource')));
 
 app.get('/', (req, res) => {
   const tail = spawnSync('tail', ['-n 384', path.join(__dirname, '../log/get-latest.log')]).output.toString();

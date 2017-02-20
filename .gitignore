@@ -3,7 +3,7 @@
 
 .idea
 log/*
-config/server-conf.js
+config/server-conf.json
 node_modules
 npm-debug.log
 

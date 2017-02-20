@@ -3,7 +3,7 @@ module.exports = {
     index: __dirname + '/source/js/index.js'
   },
   output: {
-    path: __dirname + '/web/js/app',
+    path: __dirname + '/web/resource/js/app',
     filename: '[name].js'
   },
   module: {
