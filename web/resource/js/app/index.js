@@ -14370,7 +14370,8 @@ window.onload = function () {
     axisX: {
       labelFormatter: function labelFormatter(e) {
         return (0, _dateformat2.default)(new Date(e.value), 'mm-dd HH:MM');
-      }
+      },
+      valueFormatString: 'mm-dd HH:MM'
     }
   });
   chart.render();

@@ -19,7 +19,8 @@ window.onload = () => {
     axisX: {
       labelFormatter: (e) => {
         return dateFormat(new Date(e.value), 'mm-dd HH:MM');
-      }
+      },
+      valueFormatString: 'mm-dd HH:MM'
     }
   });
   chart.render();
