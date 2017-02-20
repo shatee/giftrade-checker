@@ -14113,7 +14113,7 @@ var _canvasjs = __webpack_require__(10);
 
 window.onload = function () {
   var data = JSON.parse(document.querySelector('#data').getAttribute('data'));
-  var chart = (0, _canvasjs.Chart)('chart', {
+  var chart = new _canvasjs.Chart('chart', {
     title: {
       text: 'Rate'
     },
@@ -14127,6 +14127,7 @@ window.onload = function () {
       })
     }]
   });
+  chart.render();
 };
 
 /***/ })
