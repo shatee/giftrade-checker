@@ -5,7 +5,16 @@ window.onload = () => {
   const ctx = document.getElementById('chart');
   const chart = new Chart(ctx, {
     type: 'line',
-    data
+    data: {
+      datasets: {
+        data: data.map((row) => {
+          return {
+            x: row.date,
+            y: row.rate
+          };
+        })
+      }
+    }
   });
 };
 

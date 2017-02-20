@@ -27553,7 +27553,16 @@ window.onload = function () {
   var ctx = document.getElementById('chart');
   var chart = new _chart2.default(ctx, {
     type: 'line',
-    data: data
+    data: {
+      datasets: {
+        data: data.map(function (row) {
+          return {
+            x: row.date,
+            y: row.rate
+          };
+        })
+      }
+    }
   });
 };
 
