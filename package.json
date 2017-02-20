@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/shatee/giftrade-checker#readme",
   "dependencies": {
+    "canvasjs": "^1.8.1",
     "chart.js": "^2.5.0",
     "dateformat": "^2.0.0",
     "ect": "^0.5.9",

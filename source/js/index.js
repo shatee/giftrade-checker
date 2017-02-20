@@ -1,22 +1,20 @@
-import Chart from 'chart.js';
+import CanvasJS from 'canvasjs';
 
 window.onload = () => {
   const data = JSON.parse(document.querySelector('#data').getAttribute('data'));
-  const ctx = document.getElementById('chart');
-  const chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ["rate"],
-      datasets: [{
-        label: "rate",
-        data: data.map((row) => {
-          return {
-            x: row.date,
-            y: row.rate
-          };
-        })
-      }]
-    }
+  const chart = CanvasJS.Chart('chart', {
+    title: {
+      text: 'Rate'
+    },
+    data: [{
+      type: 'area',
+      dataPoints: data.map((row) => {
+        return {
+          x: row.date,
+          y: row.rate
+        };
+      })
+    }]
   });
 };
 
