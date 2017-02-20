@@ -1,4 +1,5 @@
 import {Chart} from 'canvasjs';
+import dateFormat from 'dateformat';
 
 window.onload = () => {
   const data = JSON.parse(document.querySelector('#data').getAttribute('data'));
@@ -14,7 +15,12 @@ window.onload = () => {
           y: row.rate
         };
       })
-    }]
+    }],
+    axisX: {
+      labelFormatter: (e) => {
+        return dateFormat(new Date(e.value), 'mm-dd HH:MM');
+      }
+    }
   });
   chart.render();
 };

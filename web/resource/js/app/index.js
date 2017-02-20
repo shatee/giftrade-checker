@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 40);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -76,6 +76,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.isCanvasSupported = exports.dateFormat = undefined;
 exports.extend = extend;
 exports.inherit = inherit;
 exports.addToDateTime = addToDateTime;
@@ -93,7 +94,6 @@ exports.addArrayIndexOf = addArrayIndexOf;
 exports.getFontHeightInPixels = getFontHeightInPixels;
 exports.getLineDashArray = getLineDashArray;
 exports.addEvent = addEvent;
-exports.dateFormat = dateFormat;
 exports.numberFormat = numberFormat;
 exports.getObjectId = getObjectId;
 exports.getMouseCoordinates = getMouseCoordinates;
@@ -109,6 +109,9 @@ exports.getBezierPoints = getBezierPoints;
 exports.convertPercentToValue = convertPercentToValue;
 exports.drawRect = drawRect;
 exports.drawSegment = drawSegment;
+
+var _culture = __webpack_require__(5);
+
 function extend(derived, base) {
 	derived.prototype = inherit(base.prototype);
 	derived.prototype.constructor = derived;
@@ -129,7 +132,7 @@ function addToDateTime(dateTime, num, type) {
 }
 
 function convertToNumber(num, type) {
-	return constants[type + "Duration"] * num;
+	return _culture.constants[type + "Duration"] * num;
 }
 
 function pad(value, length) {
@@ -372,7 +375,7 @@ function addEvent(obj, eventType, fn, useCapture) {
 }
 
 //#region formatting functions/methods
-function dateFormat() {
+function _dateFormat() {
 
 	var reg = /D{1,4}|M{1,4}|Y{1,4}|h{1,2}|H{1,2}|m{1,2}|s{1,2}|f{1,3}|t{1,2}|T{1,2}|K|z{1,3}|"[^"]*"|'[^']*'/g;
 
@@ -500,6 +503,8 @@ function dateFormat() {
 		return result;
 	};
 };
+
+var dateFormat = exports.dateFormat = _dateFormat();
 
 function numberFormat(v, fs, cultureInfo) {
 	if (v === null) return "";
@@ -1245,7 +1250,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _themes = __webpack_require__(5);
+var _themes = __webpack_require__(6);
 
 var _options = __webpack_require__(7);
 
@@ -1700,6 +1705,44 @@ exports.default = TextBlock;
 
 
 Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var cultures = exports.cultures = {
+  "en": {}
+  //Derives from the default options
+  //,
+  //"es": {
+  //    decimalSeparator: ",",
+  //    digitGroupSeparator: ".",
+  //    zoomText: "zoom",
+  //    panText: "pan",
+  //    resetText: "reset",
+  //    days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
+  //}
+};
+
+var constants = exports.constants = {
+  numberDuration: 1,
+  yearDuration: 1000 * 60 * 60 * 24 * 364,
+  monthDuration: 1000 * 60 * 60 * 24 * 30,
+  weekDuration: 1000 * 60 * 60 * 24 * 7,
+  dayDuration: 1000 * 60 * 60 * 24,
+  hourDuration: 1000 * 60 * 60,
+  minuteDuration: 1000 * 60,
+  secondDuration: 1000,
+  millisecondDuration: 1,
+
+  dayOfWeekFromInt: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.themes = exports.colorSets = undefined;
@@ -1927,44 +1970,6 @@ var themes = exports.themes = {
 			indexLabelLineThickness: 2
 		}
 	}
-};
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var cultures = exports.cultures = {
-  "en": {}
-  //Derives from the default options
-  //,
-  //"es": {
-  //    decimalSeparator: ",",
-  //    digitGroupSeparator: ".",
-  //    zoomText: "zoom",
-  //    panText: "pan",
-  //    resetText: "reset",
-  //    days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
-  //}
-};
-
-var constants = exports.constants = {
-  numberDuration: 1,
-  yearDuration: 1000 * 60 * 60 * 24 * 364,
-  monthDuration: 1000 * 60 * 60 * 24 * 30,
-  weekDuration: 1000 * 60 * 60 * 24 * 7,
-  dayDuration: 1000 * 60 * 60 * 24,
-  hourDuration: 1000 * 60 * 60,
-  minuteDuration: 1000 * 60,
-  secondDuration: 1000,
-  millisecondDuration: 1,
-
-  dayOfWeekFromInt: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 };
 
 /***/ }),
@@ -2306,7 +2311,7 @@ var _canvasjs2 = _interopRequireDefault(_canvasjs);
 
 var _utils = __webpack_require__(0);
 
-var _culture = __webpack_require__(6);
+var _culture = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2770,7 +2775,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.formatDate = exports.formatNumber = exports.addCultureInfo = exports.addColorSet = undefined;
 exports.Chart = Chart;
 
-var _charts = __webpack_require__(34);
+var _charts = __webpack_require__(35);
 
 var _charts2 = _interopRequireDefault(_charts);
 
@@ -2778,9 +2783,9 @@ var _culture_info = __webpack_require__(8);
 
 var _culture_info2 = _interopRequireDefault(_culture_info);
 
-var _themes = __webpack_require__(5);
+var _themes = __webpack_require__(6);
 
-var _culture = __webpack_require__(6);
+var _culture = __webpack_require__(5);
 
 var _utils = __webpack_require__(0);
 
@@ -2842,6 +2847,234 @@ Chart.version = "v1.8.2";
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/*
+ * Date Format 1.2.3
+ * (c) 2007-2009 Steven Levithan <stevenlevithan.com>
+ * MIT license
+ *
+ * Includes enhancements by Scott Trenda <scott.trenda.net>
+ * and Kris Kowal <cixar.com/~kris.kowal/>
+ *
+ * Accepts a date, a mask, or a date and a mask.
+ * Returns a formatted version of the given date.
+ * The date defaults to the current date/time.
+ * The mask defaults to dateFormat.masks.default.
+ */
+
+(function (global) {
+  'use strict';
+
+  var dateFormat = function () {
+    var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZWN]|'[^']*'|'[^']*'/g;
+    var timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g;
+    var timezoneClip = /[^-+\dA-Z]/g;
+
+    // Regexes and supporting functions are cached through closure
+    return function (date, mask, utc, gmt) {
+
+      // You can't provide utc if you skip other args (use the 'UTC:' mask prefix)
+      if (arguments.length === 1 && kindOf(date) === 'string' && !/\d/.test(date)) {
+        mask = date;
+        date = undefined;
+      }
+
+      date = date || new Date();
+
+      if (!(date instanceof Date)) {
+        date = new Date(date);
+      }
+
+      if (isNaN(date)) {
+        throw TypeError('Invalid date');
+      }
+
+      mask = String(dateFormat.masks[mask] || mask || dateFormat.masks['default']);
+
+      // Allow setting the utc/gmt argument via the mask
+      var maskSlice = mask.slice(0, 4);
+      if (maskSlice === 'UTC:' || maskSlice === 'GMT:') {
+        mask = mask.slice(4);
+        utc = true;
+        if (maskSlice === 'GMT:') {
+          gmt = true;
+        }
+      }
+
+      var _ = utc ? 'getUTC' : 'get';
+      var d = date[_ + 'Date']();
+      var D = date[_ + 'Day']();
+      var m = date[_ + 'Month']();
+      var y = date[_ + 'FullYear']();
+      var H = date[_ + 'Hours']();
+      var M = date[_ + 'Minutes']();
+      var s = date[_ + 'Seconds']();
+      var L = date[_ + 'Milliseconds']();
+      var o = utc ? 0 : date.getTimezoneOffset();
+      var W = getWeek(date);
+      var N = getDayOfWeek(date);
+      var flags = {
+        d: d,
+        dd: pad(d),
+        ddd: dateFormat.i18n.dayNames[D],
+        dddd: dateFormat.i18n.dayNames[D + 7],
+        m: m + 1,
+        mm: pad(m + 1),
+        mmm: dateFormat.i18n.monthNames[m],
+        mmmm: dateFormat.i18n.monthNames[m + 12],
+        yy: String(y).slice(2),
+        yyyy: y,
+        h: H % 12 || 12,
+        hh: pad(H % 12 || 12),
+        H: H,
+        HH: pad(H),
+        M: M,
+        MM: pad(M),
+        s: s,
+        ss: pad(s),
+        l: pad(L, 3),
+        L: pad(Math.round(L / 10)),
+        t: H < 12 ? 'a' : 'p',
+        tt: H < 12 ? 'am' : 'pm',
+        T: H < 12 ? 'A' : 'P',
+        TT: H < 12 ? 'AM' : 'PM',
+        Z: gmt ? 'GMT' : utc ? 'UTC' : (String(date).match(timezone) || ['']).pop().replace(timezoneClip, ''),
+        o: (o > 0 ? '-' : '+') + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+        S: ['th', 'st', 'nd', 'rd'][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10],
+        W: W,
+        N: N
+      };
+
+      return mask.replace(token, function (match) {
+        if (match in flags) {
+          return flags[match];
+        }
+        return match.slice(1, match.length - 1);
+      });
+    };
+  }();
+
+  dateFormat.masks = {
+    'default': 'ddd mmm dd yyyy HH:MM:ss',
+    'shortDate': 'm/d/yy',
+    'mediumDate': 'mmm d, yyyy',
+    'longDate': 'mmmm d, yyyy',
+    'fullDate': 'dddd, mmmm d, yyyy',
+    'shortTime': 'h:MM TT',
+    'mediumTime': 'h:MM:ss TT',
+    'longTime': 'h:MM:ss TT Z',
+    'isoDate': 'yyyy-mm-dd',
+    'isoTime': 'HH:MM:ss',
+    'isoDateTime': 'yyyy-mm-dd\'T\'HH:MM:sso',
+    'isoUtcDateTime': 'UTC:yyyy-mm-dd\'T\'HH:MM:ss\'Z\'',
+    'expiresHeaderFormat': 'ddd, dd mmm yyyy HH:MM:ss Z'
+  };
+
+  // Internationalization strings
+  dateFormat.i18n = {
+    dayNames: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  };
+
+  function pad(val, len) {
+    val = String(val);
+    len = len || 2;
+    while (val.length < len) {
+      val = '0' + val;
+    }
+    return val;
+  }
+
+  /**
+   * Get the ISO 8601 week number
+   * Based on comments from
+   * http://techblog.procurios.nl/k/n618/news/view/33796/14863/Calculate-ISO-8601-week-and-year-in-javascript.html
+   *
+   * @param  {Object} `date`
+   * @return {Number}
+   */
+  function getWeek(date) {
+    // Remove time components of date
+    var targetThursday = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+    // Change date to Thursday same week
+    targetThursday.setDate(targetThursday.getDate() - (targetThursday.getDay() + 6) % 7 + 3);
+
+    // Take January 4th as it is always in week 1 (see ISO 8601)
+    var firstThursday = new Date(targetThursday.getFullYear(), 0, 4);
+
+    // Change date to Thursday same week
+    firstThursday.setDate(firstThursday.getDate() - (firstThursday.getDay() + 6) % 7 + 3);
+
+    // Check if daylight-saving-time-switch occured and correct for it
+    var ds = targetThursday.getTimezoneOffset() - firstThursday.getTimezoneOffset();
+    targetThursday.setHours(targetThursday.getHours() - ds);
+
+    // Number of weeks between target Thursday and first Thursday
+    var weekDiff = (targetThursday - firstThursday) / (86400000 * 7);
+    return 1 + Math.floor(weekDiff);
+  }
+
+  /**
+   * Get ISO-8601 numeric representation of the day of the week
+   * 1 (for Monday) through 7 (for Sunday)
+   * 
+   * @param  {Object} `date`
+   * @return {Number}
+   */
+  function getDayOfWeek(date) {
+    var dow = date.getDay();
+    if (dow === 0) {
+      dow = 7;
+    }
+    return dow;
+  }
+
+  /**
+   * kind-of shortcut
+   * @param  {*} val
+   * @return {String}
+   */
+  function kindOf(val) {
+    if (val === null) {
+      return 'null';
+    }
+
+    if (val === undefined) {
+      return 'undefined';
+    }
+
+    if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) !== 'object') {
+      return typeof val === 'undefined' ? 'undefined' : _typeof(val);
+    }
+
+    if (Array.isArray(val)) {
+      return 'array';
+    }
+
+    return {}.toString.call(val).slice(8, -1).toLowerCase();
+  };
+
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+      return dateFormat;
+    }.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
+    module.exports = dateFormat;
+  } else {
+    global.dateFormat = dateFormat;
+  }
+})(undefined);
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3076,7 +3309,7 @@ var _utils = __webpack_require__(0);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3225,7 +3458,7 @@ var _utils = __webpack_require__(0);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3399,7 +3632,7 @@ var _utils = __webpack_require__(0);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3603,7 +3836,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3768,7 +4001,7 @@ var _utils = __webpack_require__(0);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3779,83 +4012,83 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.PieChart = exports.RangeSplineAreaChart = exports.RangeAreaChart = exports.RangeBarChart = exports.RangeColumnChart = exports.CandlestickChart = exports.ScatterChart = exports.BubbleChart = exports.StackedArea100Chart = exports.StackedAreaChart = exports.StepAreaChart = exports.SplineAreaChart = exports.AreaChart = exports.StackedBar100Chart = exports.StackedBarChart = exports.BarChart = exports.StackedColumn100Chart = exports.StackedColumnChart = exports.ColumnChart = exports.SplineChart = undefined;
 
-var _spline = __webpack_require__(23);
+var _spline = __webpack_require__(24);
 
 var _spline2 = _interopRequireDefault(_spline);
 
-var _column = __webpack_require__(15);
+var _column = __webpack_require__(16);
 
 var _column2 = _interopRequireDefault(_column);
 
-var _stacked_column = __webpack_require__(29);
+var _stacked_column = __webpack_require__(30);
 
 var _stacked_column2 = _interopRequireDefault(_stacked_column);
 
-var _stacked_column_ = __webpack_require__(30);
+var _stacked_column_ = __webpack_require__(31);
 
 var _stacked_column_2 = _interopRequireDefault(_stacked_column_);
 
-var _bar = __webpack_require__(12);
+var _bar = __webpack_require__(13);
 
 var _bar2 = _interopRequireDefault(_bar);
 
-var _stacked_bar = __webpack_require__(27);
+var _stacked_bar = __webpack_require__(28);
 
 var _stacked_bar2 = _interopRequireDefault(_stacked_bar);
 
-var _stacked_bar_ = __webpack_require__(28);
+var _stacked_bar_ = __webpack_require__(29);
 
 var _stacked_bar_2 = _interopRequireDefault(_stacked_bar_);
 
-var _area = __webpack_require__(11);
+var _area = __webpack_require__(12);
 
 var _area2 = _interopRequireDefault(_area);
 
-var _spline_area = __webpack_require__(24);
+var _spline_area = __webpack_require__(25);
 
 var _spline_area2 = _interopRequireDefault(_spline_area);
 
-var _step_area = __webpack_require__(31);
+var _step_area = __webpack_require__(32);
 
 var _step_area2 = _interopRequireDefault(_step_area);
 
-var _stacked_area = __webpack_require__(25);
+var _stacked_area = __webpack_require__(26);
 
 var _stacked_area2 = _interopRequireDefault(_stacked_area);
 
-var _stacked_area_ = __webpack_require__(26);
+var _stacked_area_ = __webpack_require__(27);
 
 var _stacked_area_2 = _interopRequireDefault(_stacked_area_);
 
-var _bubble = __webpack_require__(13);
+var _bubble = __webpack_require__(14);
 
 var _bubble2 = _interopRequireDefault(_bubble);
 
-var _scatter = __webpack_require__(22);
+var _scatter = __webpack_require__(23);
 
 var _scatter2 = _interopRequireDefault(_scatter);
 
-var _candlestick = __webpack_require__(14);
+var _candlestick = __webpack_require__(15);
 
 var _candlestick2 = _interopRequireDefault(_candlestick);
 
-var _range_column = __webpack_require__(20);
+var _range_column = __webpack_require__(21);
 
 var _range_column2 = _interopRequireDefault(_range_column);
 
-var _range_bar = __webpack_require__(19);
+var _range_bar = __webpack_require__(20);
 
 var _range_bar2 = _interopRequireDefault(_range_bar);
 
-var _range_area = __webpack_require__(18);
+var _range_area = __webpack_require__(19);
 
 var _range_area2 = _interopRequireDefault(_range_area);
 
-var _range_spline_area = __webpack_require__(21);
+var _range_spline_area = __webpack_require__(22);
 
 var _range_spline_area2 = _interopRequireDefault(_range_spline_area);
 
-var _pie = __webpack_require__(17);
+var _pie = __webpack_require__(18);
 
 var _pie2 = _interopRequireDefault(_pie);
 
@@ -3883,7 +4116,7 @@ exports.RangeSplineAreaChart = _range_spline_area2.default;
 exports.PieChart = _pie2.default;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4941,7 +5174,7 @@ var _utils = __webpack_require__(0);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5224,7 +5457,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5384,7 +5617,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5545,7 +5778,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5868,7 +6101,7 @@ var drawSegment = function drawSegment(ctx, center, radius, color, type, theta1,
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6023,7 +6256,7 @@ var _utils = __webpack_require__(0);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6334,7 +6567,7 @@ var drawRect = function drawRect(ctx, x1, y1, x2, y2, color, borderThickness, bo
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6551,7 +6784,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6834,7 +7067,7 @@ var _utils = __webpack_require__(0);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7126,7 +7359,7 @@ var _utils = __webpack_require__(0);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7275,7 +7508,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7426,7 +7659,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7581,7 +7814,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7735,7 +7968,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7964,7 +8197,7 @@ exports.default = function (plotUnit) {
 var _utils = __webpack_require__(0);
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8060,7 +8293,7 @@ Animator.prototype.cancelAllAnimations = function () {
 exports.default = Animator;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8079,6 +8312,8 @@ var _text_block = __webpack_require__(4);
 var _text_block2 = _interopRequireDefault(_text_block);
 
 var _utils = __webpack_require__(0);
+
+var _culture = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8206,14 +8441,14 @@ Axis.prototype.createLabels = function () {
 	}
 
 	if (this.type === "axisX" && this.chart.plotInfo.axisXValueType === "dateTime") {
-		endPoint = addToDateTime(new Date(this.viewportMaximum), this.interval, this.intervalType);
+		endPoint = (0, _utils.addToDateTime)(new Date(this.viewportMaximum), this.interval, this.intervalType);
 		//endPoint = this.viewportMaximum;
 
-		for (i = this.intervalStartPosition; i < endPoint; addToDateTime(i, this.interval, this.intervalType)) {
+		for (i = this.intervalStartPosition; i < endPoint; (0, _utils.addToDateTime)(i, this.interval, this.intervalType)) {
 
 			//var text = dateFormat(i, this.valueFormatString);
 			var timeInMilliseconds = i.getTime();
-			var text = this.labelFormatter ? this.labelFormatter({ chart: this.chart, axis: this._options, value: i, label: this.labels[i] ? this.labels[i] : null }) : this.type === "axisX" && this.labels[timeInMilliseconds] ? this.labels[timeInMilliseconds] : dateFormat(i, this.valueFormatString, this.chart._cultureInfo);
+			var text = this.labelFormatter ? this.labelFormatter({ chart: this.chart, axis: this._options, value: i, label: this.labels[i] ? this.labels[i] : null }) : this.type === "axisX" && this.labels[timeInMilliseconds] ? this.labels[timeInMilliseconds] : (0, _utils.dateFormat)(i, this.valueFormatString, this.chart._cultureInfo);
 
 			textBlock = new _text_block2.default(this.ctx, {
 				x: 0,
@@ -9417,101 +9652,101 @@ Axis.prototype.calculateAxisParameters = function () {
 			} else if (range / (1 * 500) <= noTicks) {
 				this.interval = 500;
 				this.intervalType = "millisecond";
-			} else if (range / (constants.secondDuration * 1) <= noTicks) {
+			} else if (range / (_culture.constants.secondDuration * 1) <= noTicks) {
 				this.interval = 1;
 				this.intervalType = "second";
-			} else if (range / (constants.secondDuration * 2) <= noTicks) {
+			} else if (range / (_culture.constants.secondDuration * 2) <= noTicks) {
 				this.interval = 2;
 				this.intervalType = "second";
-			} else if (range / (constants.secondDuration * 5) <= noTicks) {
+			} else if (range / (_culture.constants.secondDuration * 5) <= noTicks) {
 				this.interval = 5;
 				this.intervalType = "second";
-			} else if (range / (constants.secondDuration * 10) <= noTicks) {
+			} else if (range / (_culture.constants.secondDuration * 10) <= noTicks) {
 				this.interval = 10;
 				this.intervalType = "second";
-			} else if (range / (constants.secondDuration * 15) <= noTicks) {
+			} else if (range / (_culture.constants.secondDuration * 15) <= noTicks) {
 				this.interval = 15;
 				this.intervalType = "second";
-			} else if (range / (constants.secondDuration * 20) <= noTicks) {
+			} else if (range / (_culture.constants.secondDuration * 20) <= noTicks) {
 				this.interval = 20;
 				this.intervalType = "second";
-			} else if (range / (constants.secondDuration * 30) <= noTicks) {
+			} else if (range / (_culture.constants.secondDuration * 30) <= noTicks) {
 				this.interval = 30;
 				this.intervalType = "second";
-			} else if (range / (constants.minuteDuration * 1) <= noTicks) {
+			} else if (range / (_culture.constants.minuteDuration * 1) <= noTicks) {
 				this.interval = 1;
 				this.intervalType = "minute";
-			} else if (range / (constants.minuteDuration * 2) <= noTicks) {
+			} else if (range / (_culture.constants.minuteDuration * 2) <= noTicks) {
 				this.interval = 2;
 				this.intervalType = "minute";
-			} else if (range / (constants.minuteDuration * 5) <= noTicks) {
+			} else if (range / (_culture.constants.minuteDuration * 5) <= noTicks) {
 				this.interval = 5;
 				this.intervalType = "minute";
-			} else if (range / (constants.minuteDuration * 10) <= noTicks) {
+			} else if (range / (_culture.constants.minuteDuration * 10) <= noTicks) {
 				this.interval = 10;
 				this.intervalType = "minute";
-			} else if (range / (constants.minuteDuration * 15) <= noTicks) {
+			} else if (range / (_culture.constants.minuteDuration * 15) <= noTicks) {
 				this.interval = 15;
 				this.intervalType = "minute";
-			} else if (range / (constants.minuteDuration * 20) <= noTicks) {
+			} else if (range / (_culture.constants.minuteDuration * 20) <= noTicks) {
 				this.interval = 20;
 				this.intervalType = "minute";
-			} else if (range / (constants.minuteDuration * 30) <= noTicks) {
+			} else if (range / (_culture.constants.minuteDuration * 30) <= noTicks) {
 				this.interval = 30;
 				this.intervalType = "minute";
-			} else if (range / (constants.hourDuration * 1) <= noTicks) {
+			} else if (range / (_culture.constants.hourDuration * 1) <= noTicks) {
 				this.interval = 1;
 				this.intervalType = "hour";
-			} else if (range / (constants.hourDuration * 2) <= noTicks) {
+			} else if (range / (_culture.constants.hourDuration * 2) <= noTicks) {
 				this.interval = 2;
 				this.intervalType = "hour";
-			} else if (range / (constants.hourDuration * 3) <= noTicks) {
+			} else if (range / (_culture.constants.hourDuration * 3) <= noTicks) {
 				this.interval = 3;
 				this.intervalType = "hour";
-			} else if (range / (constants.hourDuration * 6) <= noTicks) {
+			} else if (range / (_culture.constants.hourDuration * 6) <= noTicks) {
 				this.interval = 6;
 				this.intervalType = "hour";
-			} else if (range / (constants.dayDuration * 1) <= noTicks) {
+			} else if (range / (_culture.constants.dayDuration * 1) <= noTicks) {
 				this.interval = 1;
 				this.intervalType = "day";
-			} else if (range / (constants.dayDuration * 2) <= noTicks) {
+			} else if (range / (_culture.constants.dayDuration * 2) <= noTicks) {
 				this.interval = 2;
 				this.intervalType = "day";
-			} else if (range / (constants.dayDuration * 4) <= noTicks) {
+			} else if (range / (_culture.constants.dayDuration * 4) <= noTicks) {
 				this.interval = 4;
 				this.intervalType = "day";
-			} else if (range / (constants.weekDuration * 1) <= noTicks) {
+			} else if (range / (_culture.constants.weekDuration * 1) <= noTicks) {
 				this.interval = 1;
 				this.intervalType = "week";
-			} else if (range / (constants.weekDuration * 2) <= noTicks) {
+			} else if (range / (_culture.constants.weekDuration * 2) <= noTicks) {
 				this.interval = 2;
 				this.intervalType = "week";
-			} else if (range / (constants.weekDuration * 3) <= noTicks) {
+			} else if (range / (_culture.constants.weekDuration * 3) <= noTicks) {
 				this.interval = 3;
 				this.intervalType = "week";
-			} else if (range / (constants.monthDuration * 1) <= noTicks) {
+			} else if (range / (_culture.constants.monthDuration * 1) <= noTicks) {
 				this.interval = 1;
 				this.intervalType = "month";
-			} else if (range / (constants.monthDuration * 2) <= noTicks) {
+			} else if (range / (_culture.constants.monthDuration * 2) <= noTicks) {
 				this.interval = 2;
 				this.intervalType = "month";
-			} else if (range / (constants.monthDuration * 3) <= noTicks) {
+			} else if (range / (_culture.constants.monthDuration * 3) <= noTicks) {
 				this.interval = 3;
 				this.intervalType = "month";
-			} else if (range / (constants.monthDuration * 6) <= noTicks) {
+			} else if (range / (_culture.constants.monthDuration * 6) <= noTicks) {
 				this.interval = 6;
 				this.intervalType = "month";
-			} else if (range / (constants.yearDuration * 1) <= noTicks) {
+			} else if (range / (_culture.constants.yearDuration * 1) <= noTicks) {
 				this.interval = 1;
 				this.intervalType = "year";
-			} else if (range / (constants.yearDuration * 2) <= noTicks) {
+			} else if (range / (_culture.constants.yearDuration * 2) <= noTicks) {
 				this.interval = 2;
 				this.intervalType = "year";
-			} else if (range / (constants.yearDuration * 4) <= noTicks) {
+			} else if (range / (_culture.constants.yearDuration * 4) <= noTicks) {
 				this.interval = 4;
 				this.intervalType = "year";
 			} else {
-				this.interval = Math.floor(Axis.getNiceNumber(range / (noTicks - 1), true) / constants.yearDuration);
+				this.interval = Math.floor(Axis.getNiceNumber(range / (noTicks - 1), true) / _culture.constants.yearDuration);
 				this.intervalType = "year";
 			}
 		}
@@ -9720,7 +9955,7 @@ Axis.getNiceNumber = function (x, round) {
 
 Axis.prototype.getLabelStartPoint = function () {
 
-	var intervalInMilliseconds = convertToNumber(this.interval, this.intervalType);
+	var intervalInMilliseconds = (0, _utils.convertToNumber)(this.interval, this.intervalType);
 	var minimum = Math.floor(this.viewportMinimum / intervalInMilliseconds) * intervalInMilliseconds;
 	var dateTime = new Date(minimum);
 
@@ -9788,7 +10023,7 @@ Axis.prototype.getLabelStartPoint = function () {
 exports.default = Axis;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9802,7 +10037,7 @@ var _canvasjs = __webpack_require__(2);
 
 var _canvasjs2 = _interopRequireDefault(_canvasjs);
 
-var _animator = __webpack_require__(32);
+var _animator = __webpack_require__(33);
 
 var _animator2 = _interopRequireDefault(_animator);
 
@@ -9818,15 +10053,15 @@ var _render = __webpack_require__(3);
 
 var _render2 = _interopRequireDefault(_render);
 
-var _layout_manager = __webpack_require__(36);
+var _layout_manager = __webpack_require__(37);
 
 var _layout_manager2 = _interopRequireDefault(_layout_manager);
 
-var _event_manager = __webpack_require__(35);
+var _event_manager = __webpack_require__(36);
 
 var _event_manager2 = _interopRequireDefault(_event_manager);
 
-var _tooltip = __webpack_require__(39);
+var _tooltip = __webpack_require__(40);
 
 var _tooltip2 = _interopRequireDefault(_tooltip);
 
@@ -9834,15 +10069,15 @@ var _culture_info = __webpack_require__(8);
 
 var _culture_info2 = _interopRequireDefault(_culture_info);
 
-var _axis = __webpack_require__(33);
+var _axis = __webpack_require__(34);
 
 var _axis2 = _interopRequireDefault(_axis);
 
-var _title = __webpack_require__(38);
+var _title = __webpack_require__(39);
 
 var _title2 = _interopRequireDefault(_title);
 
-var _legend = __webpack_require__(37);
+var _legend = __webpack_require__(38);
 
 var _legend2 = _interopRequireDefault(_legend);
 
@@ -9850,13 +10085,13 @@ var _animator3 = __webpack_require__(1);
 
 var _animator4 = _interopRequireDefault(_animator3);
 
-var _themes = __webpack_require__(5);
+var _themes = __webpack_require__(6);
 
 var _options = __webpack_require__(7);
 
 var _utils = __webpack_require__(0);
 
-var _index = __webpack_require__(16);
+var _index = __webpack_require__(17);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12619,7 +12854,7 @@ Chart.prototype.replaceKeywordsWithValue = function (str, dp, ds, dpIndex, index
 		if (index !== null) value = value[index];
 
 		if (key === "x") {
-			if (chart.axisX && chart.plotInfo.axisXValueType === "dateTime") return dateFormat(value, dp.xValueFormatString ? dp.xValueFormatString : ds.xValueFormatString ? ds.xValueFormatString : chart.axisX && chart.axisX.valueFormatString ? chart.axisX.valueFormatString : "DD MMM YY", chart._cultureInfo);else return (0, _utils.numberFormat)(value, dp.xValueFormatString ? dp.xValueFormatString : ds.xValueFormatString ? ds.xValueFormatString : "#,##0.########", chart._cultureInfo);
+			if (chart.axisX && chart.plotInfo.axisXValueType === "dateTime") return (0, _utils.dateFormat)(value, dp.xValueFormatString ? dp.xValueFormatString : ds.xValueFormatString ? ds.xValueFormatString : chart.axisX && chart.axisX.valueFormatString ? chart.axisX.valueFormatString : "DD MMM YY", chart._cultureInfo);else return (0, _utils.numberFormat)(value, dp.xValueFormatString ? dp.xValueFormatString : ds.xValueFormatString ? ds.xValueFormatString : "#,##0.########", chart._cultureInfo);
 		} else if (key === "y") return (0, _utils.numberFormat)(value, dp.yValueFormatString ? dp.yValueFormatString : ds.yValueFormatString ? ds.yValueFormatString : "#,##0.########", chart._cultureInfo);else if (key === "z") return (0, _utils.numberFormat)(value, dp.zValueFormatString ? dp.zValueFormatString : ds.zValueFormatString ? ds.zValueFormatString : "#,##0.########", chart._cultureInfo);else return value;
 	};
 
@@ -12669,7 +12904,7 @@ Chart.prototype.renderPie = _index.PieChart;
 exports.default = Chart;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12884,7 +13119,7 @@ EventManager.prototype.fireEvent = function (eventObjectMap, eventType, ev) {
 exports.default = EventManager;
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12960,7 +13195,7 @@ LayoutManager.prototype.reset = function () {
 exports.default = LayoutManager;
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13339,7 +13574,7 @@ Legend.prototype.render = function () {
 exports.default = Legend;
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13510,7 +13745,7 @@ Title.prototype.render = function () {
 exports.default = Title;
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14103,13 +14338,19 @@ ToolTip.prototype.hide = function (resetOverlayedCanvas) {
 exports.default = ToolTip;
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var _canvasjs = __webpack_require__(10);
+
+var _dateformat = __webpack_require__(11);
+
+var _dateformat2 = _interopRequireDefault(_dateformat);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.onload = function () {
   var data = JSON.parse(document.querySelector('#data').getAttribute('data'));
@@ -14125,7 +14366,12 @@ window.onload = function () {
           y: row.rate
         };
       })
-    }]
+    }],
+    axisX: {
+      labelFormatter: function labelFormatter(e) {
+        return (0, _dateformat2.default)(new Date(e.value), 'mm-dd HH:MM');
+      }
+    }
   });
   chart.render();
 };
