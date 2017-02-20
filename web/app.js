@@ -19,7 +19,9 @@ app.use(express.static(path.join(__dirname, '/resource')));
 
 app.get('/', (req, res) => {
   const tail = spawnSync('tail', ['-n 384', path.join(__dirname, '../log/get-latest.log')]).output.toString();
-  const data = tail.split("\n").map((line) => {
+  const data = tail.split("\n").filter((line) => {
+    return /\t/.test(line);
+  }).map((line) => {
     const splitted = line.split("\t");
     return {
       date: new Date(splitted[0]),
