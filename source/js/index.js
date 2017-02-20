@@ -20,7 +20,7 @@ window.onload = () => {
       labelFormatter: (e) => {
         return dateFormat(new Date(e.value), 'mm-dd HH:MM');
       },
-      valueFormatString: 'mm-dd HH:MM'
+      valueFormatString: 'MM-DD HH:mm'
     }
   });
   chart.render();
