@@ -14111,13 +14111,9 @@ exports.default = ToolTip;
 
 var _canvasjs = __webpack_require__(10);
 
-var _canvasjs2 = _interopRequireDefault(_canvasjs);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 window.onload = function () {
   var data = JSON.parse(document.querySelector('#data').getAttribute('data'));
-  var chart = _canvasjs2.default.Chart('chart', {
+  var chart = (0, _canvasjs.Chart)('chart', {
     title: {
       text: 'Rate'
     },

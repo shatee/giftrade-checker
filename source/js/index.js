@@ -1,8 +1,8 @@
-import CanvasJS from 'canvasjs';
+import {Chart} from 'canvasjs';
 
 window.onload = () => {
   const data = JSON.parse(document.querySelector('#data').getAttribute('data'));
-  const chart = CanvasJS.Chart('chart', {
+  const chart = Chart('chart', {
     title: {
       text: 'Rate'
     },
