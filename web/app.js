@@ -18,7 +18,7 @@ app.engine('ect', ectRender.render);
 app.use(express.static(path.join(__dirname, '/resource')));
 
 app.get('/', (req, res) => {
-  const tail = spawnSync('tail', ['-n 384', path.join(__dirname, '../log/get-latest.log')]).output.toString();
+  const tail = spawnSync('tail', [`-n ${3 * 24 * 15}`, path.join(__dirname, '../log/get-latest.log')]).output.toString();
   const data = tail.split("\n").filter((line) => {
     return /\t/.test(line);
   }).map((line) => {
