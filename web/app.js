@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 
   const amaten = format(spawnSync('tail', [
     `-n ${7 * 24 * 4}`,
-    path.join(__dirname, '../log/get-giftrade.log')
+    path.join(__dirname, '../log/get-amaten.log')
   ]).output.toString());
 
   return res.render('page/index.ect', {
