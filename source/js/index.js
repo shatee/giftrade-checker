@@ -2,14 +2,24 @@ import {Chart} from 'canvasjs';
 import dateFormat from 'dateformat';
 
 window.onload = () => {
-  const data = JSON.parse(document.querySelector('#data').getAttribute('data'));
+  const giftrade = JSON.parse(document.querySelector('#giftrade').getAttribute('data'));
+  const amaten = JSON.parse(document.querySelector('#amaten').getAttribute('data'));
+
   const chart = new Chart('chart', {
     title: {
       text: 'Rate'
     },
     data: [{
       type: 'area',
-      dataPoints: data.map((row) => {
+      dataPoints: giftrade.map((row) => {
+        return {
+          x: new Date(row.date),
+          y: row.rate
+        };
+      })
+    },{
+      type: 'area',
+      dataPoints: amaten.map((row) => {
         return {
           x: new Date(row.date),
           y: row.rate
@@ -28,4 +38,3 @@ window.onload = () => {
   });
   chart.render();
 };
-

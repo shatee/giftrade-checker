@@ -1,2 +1,3 @@
 # giftrade-checker
-0 * * * *  .nvm/versions/node/v7.5.0/bin/node ~/giftrade-checker/get-latest.js >> ~/giftrade-checker/log/get-latest.log 2>&1
+*/15 * * * *  .nvm/versions/node/v7.5.0/bin/node ~/giftrade-checker/get-giftrade.js >> ~/giftrade-checker/log/get-giftrade.log 2>&1
+*/15 * * * *  .nvm/versions/node/v7.5.0/bin/node ~/giftrade-checker/get-amaten.js >> ~/giftrade-checker/log/get-amaten.log 2>&1

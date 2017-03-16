@@ -14353,14 +14353,24 @@ var _dateformat2 = _interopRequireDefault(_dateformat);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.onload = function () {
-  var data = JSON.parse(document.querySelector('#data').getAttribute('data'));
+  var giftrade = JSON.parse(document.querySelector('#giftrade').getAttribute('data'));
+  var amaten = JSON.parse(document.querySelector('#amaten').getAttribute('data'));
+
   var chart = new _canvasjs.Chart('chart', {
     title: {
       text: 'Rate'
     },
     data: [{
       type: 'area',
-      dataPoints: data.map(function (row) {
+      dataPoints: giftrade.map(function (row) {
+        return {
+          x: new Date(row.date),
+          y: row.rate
+        };
+      })
+    }, {
+      type: 'area',
+      dataPoints: amaten.map(function (row) {
         return {
           x: new Date(row.date),
           y: row.rate

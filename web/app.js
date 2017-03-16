@@ -18,18 +18,32 @@ app.engine('ect', ectRender.render);
 app.use(express.static(path.join(__dirname, '/resource')));
 
 app.get('/', (req, res) => {
-  const tail = spawnSync('tail', [`-n ${7 * 24 * 4}`, path.join(__dirname, '../log/get-latest.log')]).output.toString();
-  const data = tail.split("\n").filter((line) => {
-    return /\t/.test(line);
-  }).map((line) => {
-    const splitted = line.split("\t");
-    return {
-      date: (new Date(splitted[0])).getTime(),
-      rate: Number(splitted[1])
-    };
-  });
+  function format(text) {
+    return text.split("\n").filter((line) => {
+      return /\t/.test(line);
+    }).map((line) => {
+      const splitted = line.split("\t");
+      return {
+        date: (new Date(splitted[0])).getTime(),
+        rate: Number(splitted[1])
+      };
+    });
+  }
+
+
+  const giftrade = format(spawnSync('tail', [
+    `-n ${7 * 24 * 4}`,
+    path.join(__dirname, '../log/get-giftrade.log')
+  ]).output.toString());
+
+  const amaten = format(spawnSync('tail', [
+    `-n ${7 * 24 * 4}`,
+    path.join(__dirname, '../log/get-giftrade.log')
+  ]).output.toString());
+
   return res.render('page/index.ect', {
-    data
+    giftrade,
+    amaten
   });
 });
 
