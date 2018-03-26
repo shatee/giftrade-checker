@@ -1,11 +1,10 @@
-import {Chart} from 'canvasjs/dist/canvasjs.js';
 import dateFormat from 'dateformat';
 
 window.onload = () => {
   const giftrade = JSON.parse(document.querySelector('#giftrade').getAttribute('data'));
   const amaten = JSON.parse(document.querySelector('#amaten').getAttribute('data'));
 
-  const chart = new Chart('chart', {
+  const chart = new CanvasJS.Chart('chart', {
     title: {
       text: 'Rate'
     },
