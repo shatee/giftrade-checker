@@ -3,7 +3,8 @@
 
 .idea
 log/*
-config/server-conf.json
+var/*
+config/config.json
 node_modules
 npm-debug.log
 nohup.out

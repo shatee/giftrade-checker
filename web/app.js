@@ -2,7 +2,7 @@ const express = require('express');
 const ECT = require('ect');
 const path = require('path');
 const spawnSync = require('child_process').spawnSync;
-const serverConf = require('./../config/server-conf');
+const serverConf = require('./../config/config').server;
 
 const viewPath = path.join(__dirname, '/view');
 
