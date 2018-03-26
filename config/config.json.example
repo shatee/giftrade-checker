@@ -4,6 +4,7 @@
     "port": 80
   },
   "alert": {
+    "enabled": false,
     "threshold": 0.93
   },
   "slack": {

@@ -1,4 +1,5 @@
 module.exports = {
+	mode: 'development',
   entry: {
     index: __dirname + '/source/js/index.js'
   },
@@ -7,14 +8,18 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        exclude: 'node_modules',
-        loader: 'babel-loader',
-        query:{
-          presets: ['es2015', 'stage-1']
-        }
+        exclude: /node_modules/,
+				use: [
+				  {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015']
+            }
+				  }
+				]
       }
     ]
   }

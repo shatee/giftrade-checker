@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=1280,initial-scale=1">
-<title>giftrade-checker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1280,initial-scale=1">
+  <title>giftrade-checker</title>
 </head>
 <body>
-<h1>giftrade-checker</h1>
-<div id="giftrade" data="<%= JSON.stringify(@giftrade) %>"></div>
-<div id="amaten" data="<%= JSON.stringify(@amaten) %>"></div>
-<div id="chart" style="width: 1280px; height: 640px"></div>
-<script type="application/javascript" src="/js/app/index.js"></script>
+  <h1>giftrade-checker</h1>
+  <div data-config-toggle data-key="alertEnabled">
+    通知
+    <% if @config.alert.enabled : %>
+      <button data-current-value="true">有効</button>
+    <% else : %>
+      <button data-current-value="false">無効</button>
+    <% end %>
+  </div>
+  <div id="giftrade" data="<%= JSON.stringify(@giftrade) %>"></div>
+  <div id="amaten" data="<%= JSON.stringify(@amaten) %>"></div>
+  <div id="chart" style="width: 1280px; height: 640px"></div>
+  <script type="application/javascript" src="/js/app/index.js"></script>
 </body>
 </html>

@@ -1,8 +1,11 @@
 const express = require('express');
 const ECT = require('ect');
 const path = require('path');
+const fs = require('fs');
 const spawnSync = require('child_process').spawnSync;
-const serverConf = require('./../config/config').server;
+const access = require('safe-access');
+const bodyParser = require('body-parser');
+const config = require('./../config/config');
 
 const viewPath = path.join(__dirname, '/view');
 
@@ -16,6 +19,7 @@ const ectRender = ECT({
 app.set('view engine', 'ect');
 app.engine('ect', ectRender.render);
 app.use(express.static(path.join(__dirname, '/resource')));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   function format(text) {
@@ -43,8 +47,23 @@ app.get('/', (req, res) => {
 
   return res.render('page/index.ect', {
     giftrade,
-    amaten
+    amaten,
+    config
   });
 });
 
-app.listen(serverConf.port);
+app.post('/config', (req, res) => {
+  const reqJSON = req.body;
+  let nextConfig = Object.assign({}, config);
+  nextConfig.alert.enabled = access(reqJSON, 'alertEnabled');
+  fs.writeFileSync(__dirname + '/../config/config.json', JSON.stringify(nextConfig, null, '  '));
+	res.json({
+		status: 200,
+		data: {
+			alertEnabled: nextConfig.alert.enabled
+		}
+	});
+});
+
+app.listen(config.server.port);
+

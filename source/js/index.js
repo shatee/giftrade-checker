@@ -1,4 +1,4 @@
-import {Chart} from 'canvasjs';
+import {Chart} from 'canvasjs/dist/canvasjs.js';
 import dateFormat from 'dateformat';
 
 window.onload = () => {
@@ -38,3 +38,28 @@ window.onload = () => {
   });
   chart.render();
 };
+
+document.querySelectorAll('[data-config-toggle]').forEach((toggle) => {
+  const key = toggle.dataset.key;
+  if (!key) {
+    return;
+  }
+  toggle.addEventListener('click', (event) => {
+    const currentValue = event.target.dataset.currentValue;
+    if (currentValue === undefined) {
+      return;
+    }
+    const nextValue = currentValue !== 'true';
+    fetch('/config', {
+      method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+      body: JSON.stringify({
+        [key]: nextValue
+      })
+    }).then(() => {
+      location.reload();
+    });
+  });
+});

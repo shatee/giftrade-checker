@@ -34,7 +34,7 @@ jsdom.env({
       rate
     }, null, '  '));
 
-    if (rate <= config.alert.threshold && rate < lastAmount.rate) {
+    if (config.alert.enabled && rate <= config.alert.threshold && rate < lastAmount.rate) {
       Slack.post(
         config.slack.channel,
         `[giftrade-checker] 額面: ¥${face.toLocaleString()}, 売価: ¥${price.toLocaleString()}, 率: ${percent}`
