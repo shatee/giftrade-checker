@@ -24,6 +24,7 @@
     "dateformat": "^3.0.3",
     "ect": "^0.5.9",
     "express": "^4.16.3",
+    "jquery": "^3.3.1",
     "jsdom": "^11.6.2",
     "safe-access": "^0.1.0"
   },
